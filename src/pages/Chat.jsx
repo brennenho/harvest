@@ -1,11 +1,9 @@
 import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import lens from "./assets/lens.png";
-import loadingGif from "./assets/loading.gif";
-import './App.css'
+import lens from "../assets/lens.png";
+import loadingGif from "../assets/loading.gif";
+import './Chat.css'
 
-function App() {
+export default function Chat() {
   const [prompt, updatePrompt] = useState(undefined);
   const [loading, setLoading] = useState(false);
   const [answer, setAnswer] = useState(undefined);
@@ -47,9 +45,8 @@ function App() {
   }
 
   return (
-    
-    <div className="app">
-      <div className="app-container">
+    <div className="chat">
+      <div className="chat-container">
         <div className="spotlight__wrapper">
           <input
             type="text"
@@ -61,12 +58,10 @@ function App() {
               backgroundImage: loading ? `url(${loadingGif})` : `url(${lens})`,
             }}
           />
-          <div class="horiz_line"></div>
+          <div className="horiz_line"></div>
           <div className="spotlight__answer">{answer && <p>{answer}</p>}</div>
         </div>
       </div>
     </div>
   );
 }
-
-export default App

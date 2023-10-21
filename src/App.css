@@ -1,11 +1,11 @@
 .app {
-  height: 100%;
+  height: 100vh;
   width: 100vw;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: #C1D8C3; 
 }
 
 .app-container {
@@ -17,23 +17,22 @@
 
 .spotlight__wrapper {
   border-radius: 12px;
-  border: 1px solid #dfe1e5;
+  border: 1px solid black;
   margin: auto;
-  max-width: 600px;
-  background-color: #fff;
+  max-width: 800px;
+  background-color: white;
 }
 
 .spotlight__wrapper:hover,
 .spotlight__wrapper:focus {
   background-color: #fff;
-  box-shadow: 0 1px 6px rgb(32 33 36 / 28%);
-  border-color: rgba(223, 225, 229, 0);
+  /* box-shadow: 0 1px 12px rgba(0, 0, 0, 0.8); */
 }
 
 .spotlight__input {
   display: block;
   height: 56px;
-  width: 80%;
+  width: 738px;
   border: 0;
   border-radius: 12px;
   outline: none;
@@ -46,12 +45,16 @@
   padding-left: 60px;
 }
 
+.spotlight__input:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
 .spotlight__input::placeholder {
   line-height: 1.5em;
 }
 
 .spotlight__answer {
-  min-height: 115px;
+  min-height: 200px;
   line-height: 1.5em;
   letter-spacing: 0.1px;
   padding: 10px 30px;

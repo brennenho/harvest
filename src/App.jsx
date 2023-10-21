@@ -61,7 +61,7 @@ function App() {
               backgroundImage: loading ? `url(${loadingGif})` : `url(${lens})`,
             }}
           />
-          <div class="horiz_line"></div>>
+          <div class="horiz_line"></div>
           <div className="spotlight__answer">{answer && <p>{answer}</p>}</div>
         </div>
       </div>

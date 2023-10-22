@@ -8,15 +8,15 @@ export default function Layout() {
       <nav>
         <div className="nav-links">
           <div>
-            <Link to="/landing">
+            <Link to="/harvest/landing">
               <img src={banner} alt="logo" className="logo"/>
             </Link>
           </div>
           <div>
-            <Link to="/" className="nav-button">Chat</Link>
+            <Link to="/harvest" className="nav-button">Chat</Link>
           </div>
           <div>
-            <Link to="/about" className="nav-button">About</Link>
+            <Link to="/harvest/about" className="nav-button">About</Link>
           </div>
         </div>
       </nav>

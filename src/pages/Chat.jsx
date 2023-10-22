@@ -12,8 +12,12 @@ export default function Chat() {
   const [references, setReferences] = useState([]);
 
   useEffect(() => {
+    setResponses([...responses, { author: "farmerai", text: "" }]);
+  }, []);
+
+  useEffect(() => {
     if (prompt != null && prompt.trim() === "") {
-      setAnswer(undefined);
+      updatePrompt(undefined);
     }
   }, [prompt]);
 
@@ -22,46 +26,60 @@ export default function Chat() {
       return;
     }
 
-    setLoading(true);
-    event.currentTarget.value = "";
-    let requestOptions = {
-      method: 'post',
-      headers: {'Content-Type':'application/json'},
-      body: JSON.stringify({
-        "text": prompt
-      }),
+    setResponses([...responses, { author: "user", text: prompt }]);
+
+    try {
+      setLoading(true);
+      event.currentTarget.value = "";
+      let requestOptions = {
+        method: 'post',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify({
+          "text": prompt
+        }),
+      }
+      
+      let res = await fetch(`${API_URL}/add_prompt`, requestOptions);
+  
+      if (!res.ok) {
+        throw new Error("Something went wrong");
+      }
+  
+      console.log(await res.text());
+
+      res = await fetch(`${API_URL}/response`);
+  
+      if (!res.ok) {
+        throw new Error("Something went wrong");
+      }
+      
+      const json = await res.json();
+      
+      setResponses([...responses, { author: "user", text: prompt }, { author: "farmerai", text: json.text }]);
+  
+      let new_references = json.documents.map((doc) => { return { title: doc.title, url: doc.url } })
+
+      setReferences(new_references);
+
+      console.log(json)
+    } finally {
+      setLoading(false)
     }
-    
-    let res = await fetch(`${API_URL}/add_prompt`, requestOptions);
-
-    if (!res.ok) {
-      throw new Error("Something went wrong");
-    }
-
-    console.log(await res.text());
-
-    res = await fetch(`${API_URL}/response`);
-
-    if (!res.ok) {
-      throw new Error("Something went wrong");
-    }
-
-    const json = await res.json();
-
-    console.log(json);
-
-    setResponses([...responses, json.text]);
-    setReferences([...references, json.documents]);
-    setLoading(false)
   }
 
   const renderChat = () => {
     let chats = [];
 
     for (let i = 0; i < responses.length; i++) {
+      let icon = responses[i].author === "user" ? "src/assets/sprout-logo-svgrepo-com.svg" : "src/assets/farmer-svgrepo-com.svg";
+
       chats.push(
         <div className="chat" key={i}>
-          <div className="chat-message">{responses[i]}</div>
+          <div className="chat-message" 
+          // style={{
+          //   backgroundImage: `url(${icon})`,
+          // }}
+          >{responses[i].text}</div>
         </div>
       );
     }
@@ -76,12 +94,19 @@ export default function Chat() {
   }
 
   const renderReferences = () => {
-    let references = [];
+    let referenceList = [];
+
+    console.log('references: ' , references)
 
     for (let i = 0; i < references.length; i++) {
-      references.push(
+      console.log(references[i].url)
+      console.log(references[i].title)
+
+      referenceList.push(
         <div className="reference" key={i}>
-          <div className="reference-message">{references[i]}</div>
+          <div className="reference-message">
+            <a href={references[i].url} target="_blank">{references[i].title}</a>
+          </div>
         </div>
       );
     }
@@ -89,7 +114,7 @@ export default function Chat() {
     return (
       <div className="reference-container">
         <div className="reference-wrapper">
-          <div className="reference">{references}</div>
+          <div className="reference">{referenceList}</div>
         </div>
       </div>
     )
@@ -110,17 +135,14 @@ export default function Chat() {
         />
         <div className="horiz-line"></div>
 
-        <div className="spotlight-responses">{
-          loading ? <img src="src/assets/loading.gif" alt="logo" className="loading"/> :
+        <div className="spotlight-responses">
+          {loading && <img src="src/assets/loading.gif" alt="logo" className="loading"/>}
           <div>{renderChat()}</div>
-        }</div>
+        </div>
       </div>
 
-      <div className="right-wrapper">
-        <div className="references-wrapper">
-          <div className="references">{references && <div>{renderReferences()}</div>}</div>
-        </div>
-        <button className="right-button">Map Me</button>
+      <div className="references-wrapper">
+        <div className="references">{renderReferences()}</div>
       </div>
     </div>
   );

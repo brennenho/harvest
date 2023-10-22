@@ -1,10 +1,9 @@
 from flask import Blueprint, request, jsonify
-# from decouple import config
-from flask_cors import cross_origin
+from decouple import config
 import json
 import cohere
  
-co = cohere.Client('nTI4k8KctOt7AiB6JdKIJhnwDUeU1BzauNM6G6Op')
+co = cohere.Client(config('CO_API_KEY'))
 
 prompt_data = ""
 history = []
@@ -26,7 +25,7 @@ def talk(prompt):
     return response
 
 persona_assignment = '''
-    Your name is Farmer.AI. You are an LLM based chatbot that is supposed to answer questions
+    Your name is HRVST. You are an LLM based chatbot that is supposed to answer questions
       from farmers and hobbyists related to sustainable agricultural practices. You must provide
      responses to questions asked by the user that include evidence of your claims. Also, identify
      when the user is wishing to use unsustainable agricultural practices and instead suggest better
@@ -38,11 +37,6 @@ persona_assignment = '''
 talk(persona_assignment)
 
 main = Blueprint('main', __name__)
-
-@main.route("/")
-@cross_origin()
-def helloWorld():
-    return "Hello, cross-origin-world!"
 
 @main.route('/add_prompt', methods=['POST'])
 def add_prompt():

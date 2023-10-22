@@ -1,4 +1,5 @@
 import { Outlet, Link } from "react-router-dom";
+import banner from "../assets/banner.png";
 import "./Layout.css";
 
 export default function Layout() {
@@ -7,12 +8,12 @@ export default function Layout() {
       <nav>
         <div className="nav-links">
           <div>
-            <Link to="/">
-              <img src="src/assets/banner.png" alt="logo" className="logo"/>
+            <Link to="/landing">
+              <img src={banner} alt="logo" className="logo"/>
             </Link>
           </div>
           <div>
-            <Link to="/chat" className="nav-button">Chat</Link>
+            <Link to="/" className="nav-button">Chat</Link>
           </div>
           <div>
             <Link to="/about" className="nav-button">About</Link>

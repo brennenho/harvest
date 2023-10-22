@@ -1,9 +1,13 @@
 import { useState, useEffect } from 'react'
 import lens from "../assets/lens.png";
-import loadingGif from "../assets/lame-loading.gif";
+import lameLoadingGif from "../assets/lame-loading.gif";
+import loadingGif from "../assets/loading.gif";
+import sproutLogo from "../assets/sprout-logo-svgrepo-com.svg";
+import farmerLogo from "../assets/farmer-svgrepo-com.svg";
+
 import './Chat.css'
 
-const API_URL = 'http://146.190.129.193:5000'
+const API_URL = 'https://harvest.couriersix.xyz'
 
 export default function Chat() {
   const [loading, setLoading] = useState(false);
@@ -45,8 +49,6 @@ export default function Chat() {
         throw new Error("Something went wrong");
       }
   
-      console.log(await res.text());
-
       res = await fetch(`${API_URL}/response`);
   
       if (!res.ok) {
@@ -59,9 +61,7 @@ export default function Chat() {
   
       let new_references = json.documents.map((doc) => { return { title: doc.title, url: doc.url } })
 
-      setReferences(new_references);
-
-      console.log(json)
+      setReferences([...references, ...new_references]);
     } finally {
       setLoading(false)
     }
@@ -71,18 +71,17 @@ export default function Chat() {
     let chats = [];
 
     for (let i = 0; i < responses.length; i++) {
-      let icon = responses[i].author === "user" ? "src/assets/sprout-logo-svgrepo-com.svg" : "src/assets/farmer-svgrepo-com.svg";
+      let classNam = responses[i].author === "user" ? "chat-message" : "chat-message-alt";
 
       chats.push(
         <div className="chat" key={i}>
-          <div className="chat-message" 
-          // style={{
-          //   backgroundImage: `url(${icon})`,
-          // }}
+          <div className={classNam}
           >{responses[i].text}</div>
         </div>
       );
     }
+
+    chats.reverse();
 
     return (
       <div className="chat-container">
@@ -96,12 +95,7 @@ export default function Chat() {
   const renderReferences = () => {
     let referenceList = [];
 
-    console.log('references: ' , references)
-
     for (let i = 0; i < references.length; i++) {
-      console.log(references[i].url)
-      console.log(references[i].title)
-
       referenceList.push(
         <div className="reference" key={i}>
           <div className="reference-message">
@@ -130,13 +124,13 @@ export default function Chat() {
           onChange={(e) => updatePrompt(e.target.value)}
           onKeyUp={(e) => sendPrompt(e)}
           style={{
-            backgroundImage: loading ? `url(${loadingGif})` : `url(${lens})`,
+            backgroundImage: loading ? `url(${lameLoadingGif})` : `url(${lens})`,
           }}
         />
         <div className="horiz-line"></div>
 
         <div className="spotlight-responses">
-          {loading && <img src="src/assets/loading.gif" alt="logo" className="loading"/>}
+          {loading && <img src={loadingGif} alt="logo" className="loading"/>}
           <div>{renderChat()}</div>
         </div>
       </div>

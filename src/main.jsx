@@ -13,8 +13,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Landing />} />
-          <Route path="chat" element={<Chat />} />
+          <Route index element={<Chat />} />
+          <Route path="landing" element={<Landing />} />
           <Route path="about" element={<About />} />
           <Route path="*" element={<NotFound />} />
         </Route>

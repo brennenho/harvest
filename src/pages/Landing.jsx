@@ -4,7 +4,7 @@ export default function Landing() {
 
     return (
         <div>
-            <h1>Feet</h1>
+            <h1>Harvest</h1>
         </div>
     )
 }

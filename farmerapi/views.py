@@ -36,6 +36,10 @@ persona_assignment = '''
 
 talk(persona_assignment)
 
+persona_response = 'what is your name? introduce yourself to the user in a sentence'
+
+talk(persona_response)
+
 main = Blueprint('main', __name__)
 
 @main.route('/add_prompt', methods=['POST'])

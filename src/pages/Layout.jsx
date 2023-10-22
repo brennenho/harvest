@@ -7,8 +7,8 @@ export default function Layout() {
       <nav>
         <div className="nav-links">
           <div>
-            <Link to="/" className="nav-button">
-              <img src="src/assets/react.svg" alt="logo" className="logo"/>
+            <Link to="/">
+              <img src="src/assets/Logo.png" alt="logo" className="logo"/>
             </Link>
           </div>
           <div>

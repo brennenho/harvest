@@ -1,9 +1,10 @@
 from flask import Blueprint, request, jsonify
-from decouple import config
+# from decouple import config
+from flask_cors import cross_origin
 import json
 import cohere
  
-co = cohere.Client(config('CO_API_KEY'))
+co = cohere.Client('nTI4k8KctOt7AiB6JdKIJhnwDUeU1BzauNM6G6Op')
 
 prompt_data = ""
 history = []
@@ -37,6 +38,11 @@ persona_assignment = '''
 talk(persona_assignment)
 
 main = Blueprint('main', __name__)
+
+@main.route("/")
+@cross_origin()
+def helloWorld():
+    return "Hello, cross-origin-world!"
 
 @main.route('/add_prompt', methods=['POST'])
 def add_prompt():

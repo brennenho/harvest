@@ -1,91 +1,109 @@
-.chat {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    background-color: #C1D8C3; 
-  }
-  
-  .chat-container {
-    width: 100%;
-    max-width: 100%;
-    padding: 0 20px;
-    text-align: center;
-  }
-  
-  .spotlight__wrapper {
-    border-radius: 12px;
-    border: 1px solid black;
-    margin: auto;
-    max-width: 800px;
-    background-color: white;
-  }
-  
-  .spotlight__wrapper:hover,
-  .spotlight__wrapper:focus {
-    background-color: #fff;
-    /* box-shadow: 0 1px 12px rgba(0, 0, 0, 0.8); */
-  }
-  
-  .spotlight__input {
-    display: block;
-    height: 56px;
-    width: 738px;
-    border: 0;
-    border-radius: 12px;
-    outline: none;
-    font-size: 1.2rem;
-    color: #000;
-    background-position: left 17px center;
-    background-repeat: no-repeat;
-    background-color: #fff;
-    background-size: 3.5%;
-    padding-left: 60px;
-  }
-  
-  .spotlight__input:hover {
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
-  }
-  
-  .spotlight__input::placeholder {
-    line-height: 1.5em;
-  }
-  
-  .spotlight__answer {
-    min-height: 200px;
-    line-height: 1.5em;
-    letter-spacing: 0.1px;
-    padding: 10px 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: black;
-  }
-  
-  .spotlight__answer p::after {
-    content: "";
-    width: 2px;
-    height: 14px;
-    position: relative;
-    top: 2px;
-    left: 2px;
-    background: black;
-    display: inline-block;
-    animation: cursor-blink 1s steps(2) infinite;
-  }
-  
-  @keyframes cursor-blink {
-    0% {opacity: 1;}
-    40% {opacity: 1;}
-    60% {opacity: 0;}
-    100% {opacity: 0;}
-  }
-  
-  .horiz_line {
-    width: 100%;
-    height: 1px; 
-    border-top: 1px solid black; 
-    line-height: 100%; 
-  }
+.chat-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+.spotlight-wrapper {
+  flex: 2;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin: auto;
+  max-width: 800px;
+  max-height: 400px;
+  background-color: white;
+  margin-top: 128px;
+  align-items: center;
+}
+
+.spotlight-wrapper:hover,
+.spotlight-wrapper:focus {
+  background-color: #fff;
+  box-shadow: 0 1px 12px rgba(0, 0, 0, 0.8);
+}
+
+.spotlight-input {
+  height: 56px;
+  width: 738px;
+  border: 0;
+  border-radius: 12px;
+  outline: none;
+  font-size: 1.2rem;
+  color: #000;
+  background-position: left 17px center;
+  background-repeat: no-repeat;
+  background-color: #fff;
+  background-size: 3.5%;
+  padding-left: 60px;
+}
+
+.references-wrapper {
+  flex: 1;
+  border-radius: 12px;
+  border: 1px solid black;
+  margin: auto auto auto 10px;
+  max-width: 400px;
+  max-height: 400px;
+  background-color: white;
+  margin-top: 128px;
+}
+
+.references {
+  min-height: 312px;
+  min-width: 200px;
+  line-height: 1.5em;
+  letter-spacing: 0.1px;
+  padding: 10px 30px;
+  justify-content: start;
+  color: black;
+}
+
+.spotlight-input:hover {
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.8);
+}
+
+.spotlight-responses {
+  min-height: 256px;
+  line-height: 1.5em;
+  letter-spacing: 0.1px;
+  padding: 10px 30px;
+  color: black;
+}
+
+.spotlight-answer p::after {
+  content: "";
+  width: 2px;
+  height: 14px;
+  position: relative;
+  top: 2px;
+  left: 2px;
+  background: black;
+  display: inline-block;
+  animation: cursor-blink 1s steps(2) infinite;
+}
+
+@keyframes cursor-blink {
+  0% {opacity: 1;}
+  40% {opacity: 1;}
+  60% {opacity: 0;}
+  100% {opacity: 0;}
+}
+
+.horiz-line {
+  width: 100%;
+  height: 1px; 
+  border-top: 1px solid black; 
+  line-height: 100%; 
+}
+
+.loading {
+  width: 128px;
+  height: 128px;
+  margin: 0px 20px;
+  justify-self: center;
+  align-self: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}

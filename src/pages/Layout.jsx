@@ -3,24 +3,26 @@ import "./Layout.css";
 
 export default function Layout() {
   return (
-    <>
+    <div className="nav-container">
       <nav>
-        <ul className="nav-links">
-          <li>
-            <Link to="/" className="nav-button">Landing</Link>
-          </li>
-          <li>
+        <div className="nav-links">
+          <div>
+            <Link to="/" className="nav-button">
+              <img src="src/assets/react.svg" alt="logo" className="logo"/>
+            </Link>
+          </div>
+          <div>
             <Link to="/chat" className="nav-button">Chat</Link>
-          </li>
-          <li>
+          </div>
+          <div>
             <Link to="/about" className="nav-button">About</Link>
-          </li>
-        </ul>
+          </div>
+        </div>
       </nav>
 
       <div className="content">
         <Outlet />
       </div>
-    </>
+    </div>
   )
 };

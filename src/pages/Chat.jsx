@@ -116,8 +116,11 @@ export default function Chat() {
         }</div>
       </div>
 
-      <div className="references-wrapper">
-        <div className="references">{references && <div>{renderReferences()}</div>}</div>
+      <div className="right-wrapper">
+        <div className="references-wrapper">
+          <div className="references">{references && <div>{renderReferences()}</div>}</div>
+        </div>
+        <button className="right-button">Map Me</button>
       </div>
     </div>
   );

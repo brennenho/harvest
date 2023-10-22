@@ -12,13 +12,14 @@
   height: auto;
   background-color: #0D2818;
   list-style: none;
+  height: 100px;
 }
 
 .nav-button {
   width: 100px;
   padding: 10px 20px;
   margin: 10px 20px; 
-  background-color: #16DB65;
+  background-color: #efd367;
   display: inline-flex;
   justify-content: center;
   align-items: center;
@@ -28,19 +29,23 @@
   font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  color:black;
 }
 
 .nav-button:hover {
-  background-color: #020202;
+  background-color: #ffbd59;
+  color: black;
 }
 
 .logo {
-  width: 128px;
-  height: 128px;
+  /*width: 128px;*/
+  height: 70px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 
 .content {

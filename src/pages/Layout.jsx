@@ -8,7 +8,7 @@ export default function Layout() {
         <div className="nav-links">
           <div>
             <Link to="/">
-              <img src="src/assets/Logo.png" alt="logo" className="logo"/>
+              <img src="src/assets/banner.png" alt="logo" className="logo"/>
             </Link>
           </div>
           <div>

@@ -107,3 +107,34 @@
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
+
+.right-button {
+  width: 200px;
+  height: 100px;
+  padding: 10px 20px;
+  margin: 10px 20px; 
+  background-color: #efd367;
+  /*display: inline-flex;
+  justify-content: center;
+  align-items: center;*/
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  color: black;
+}
+
+.right-button:hover {
+  background-color: #ffbd59;
+  color: black;
+}
+
+.right-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 50%;
+  width: 50%;
+  margin-left: 50px;
+}
